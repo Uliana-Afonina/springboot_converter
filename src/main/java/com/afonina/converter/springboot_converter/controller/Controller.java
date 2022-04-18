@@ -1,6 +1,6 @@
 package com.afonina.converter.springboot_converter.controller;
 
-import com.afonina.converter.springboot_converter.service.ValuteService;
+import com.afonina.converter.springboot_converter.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
 
     @Autowired
-    private ValuteService valuteService;
+    private CurrencyService currencyService;
 }

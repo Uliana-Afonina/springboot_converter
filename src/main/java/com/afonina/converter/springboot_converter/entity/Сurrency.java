@@ -22,13 +22,14 @@ public class Сurrency {
     @Column(name = "Name")
     public String name;
 
-    //    @Column(name = "Exchange_rate")
-//    public String exchangeRate;
-    @Column(name = "Value")
-    public String value;
+    @Column(name = "Exchange_rate")
+    public String exchangeRateToRuble;
 
-    @Column(name = "Nominal")
-    public String nominal;
+//    @Column(name = "Value")
+//    public String value;
+//
+//    @Column(name = "Nominal")
+//    public String nominal;
 
     @Column(name = "CharCode")
     private String charCode;

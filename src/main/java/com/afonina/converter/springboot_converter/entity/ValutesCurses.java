@@ -5,6 +5,7 @@ import lombok.Getter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.*;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -53,7 +54,21 @@ public class ValutesCurses {
                     ", numCode='" + numCode + '\'' +
                     " }";
         }
+
+        public BigDecimal getBigDecimalFromString (String string) {
+            String replace = string.replace(",", ".");
+            return new BigDecimal(replace);
+        }
+
+        public String getExchangeRateToRuble (String divisible, String divisor) {
+            BigDecimal num1 = getBigDecimalFromString(divisible);
+            BigDecimal num2 = getBigDecimalFromString(divisor);
+
+            BigDecimal result = num1.divide(num2);
+            return result.toString();
+        }
     }
+
 
     @Override
     public String toString() {
