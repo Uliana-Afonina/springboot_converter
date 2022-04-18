@@ -1,7 +1,9 @@
 package com.afonina.converter.springboot_converter.service;
 
-import com.afonina.converter.springboot_converter.entity.Сurrency;
+import com.afonina.converter.springboot_converter.entity.Currency;
 import com.afonina.converter.springboot_converter.entity.ValutesCurses;
+import com.afonina.converter.springboot_converter.service.impl.MarshallerService;
+import com.afonina.converter.springboot_converter.service.impl.TransformFromXmlService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -14,7 +16,7 @@ class TransformFromXmlServiceTest {
     @Test
     public void getCurrencies () {
         ValutesCurses valutesCurses = marshallerService.getValutesCurses();
-        List<Сurrency> сurrencies = transformFromXmlService.getValutesFromValutesCurses(valutesCurses);
+        List<Currency> сurrencies = transformFromXmlService.getCurrenciesFromValutesCurses(valutesCurses);
         System.out.println(сurrencies);
     }
 }

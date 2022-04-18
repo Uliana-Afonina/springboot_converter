@@ -1,10 +1,8 @@
 package com.afonina.converter.springboot_converter.service;
 
 import com.afonina.converter.springboot_converter.entity.ValutesCurses;
-import org.junit.jupiter.api.BeforeEach;
+import com.afonina.converter.springboot_converter.service.impl.MarshallerService;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class MarshallerServiceTest {
     MarshallerService marshallerService = new MarshallerService();

@@ -1,22 +1,21 @@
-package com.afonina.converter.springboot_converter.service;
+package com.afonina.converter.springboot_converter.service.impl;
 
-import com.afonina.converter.springboot_converter.entity.Сurrency;
+import com.afonina.converter.springboot_converter.entity.Currency;
 import com.afonina.converter.springboot_converter.entity.ValutesCurses;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TransformFromXmlService {
 
-    public List<Сurrency> getValutesFromValutesCurses(ValutesCurses valutesCurses) {
+    public List<Currency> getCurrenciesFromValutesCurses(ValutesCurses valutesCurses) {
         String date = valutesCurses.getDate();
         List<ValutesCurses.Valute> valutes = valutesCurses.getValutes();
-        List<Сurrency> currenciesList = new ArrayList<>();
+        List<Currency> currenciesList = new ArrayList<>();
 
         for (ValutesCurses.Valute valute : valutes) {
             currenciesList.add(
-                    new Сurrency(
+                    new Currency(
                             valute.getId(),
                             valute.getName(),
                             valute.getExchangeRateToRuble(valute.getValue(), valute.getNominal()),
@@ -28,8 +27,6 @@ public class TransformFromXmlService {
         }
         return currenciesList;
     }
-
-
 }
 
 

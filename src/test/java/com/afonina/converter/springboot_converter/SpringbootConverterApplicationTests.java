@@ -1,6 +1,6 @@
 package com.afonina.converter.springboot_converter;
 
-import com.afonina.converter.springboot_converter.service.MarshallerService;
+import com.afonina.converter.springboot_converter.service.impl.MarshallerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

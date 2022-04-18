@@ -13,8 +13,8 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "valutes")
-public class Сurrency {
+@Table(name = "currencies")
+public class Currency {
     @Id
     @Column(name = "ID")
     private String id;
