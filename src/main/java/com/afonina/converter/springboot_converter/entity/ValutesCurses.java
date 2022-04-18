@@ -5,6 +5,7 @@ import lombok.Getter;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.xml.bind.annotation.*;
+import java.util.Date;
 import java.util.List;
 
 @Getter

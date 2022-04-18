@@ -1,13 +1,13 @@
 package com.afonina.converter.springboot_converter.service;
 
-import com.afonina.converter.springboot_converter.entity.Valute;
+import com.afonina.converter.springboot_converter.entity.Сurrency;
 
 import java.util.List;
 
 public interface ValuteService {
-    public List<Valute> getAllValutes ();
+    public List<Сurrency> getAllValutes ();
 
-    public Valute getValute (String id);
+    public Сurrency getValute (String id);
 
-    public void saveValute (Valute valute);
+    public void saveValute (Сurrency сurrency);
 }

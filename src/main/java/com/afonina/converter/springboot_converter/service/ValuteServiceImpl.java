@@ -1,7 +1,7 @@
 package com.afonina.converter.springboot_converter.service;
 
 import com.afonina.converter.springboot_converter.dao.ValuteRepository;
-import com.afonina.converter.springboot_converter.entity.Valute;
+import com.afonina.converter.springboot_converter.entity.Сurrency;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +15,20 @@ public class ValuteServiceImpl implements ValuteService {
     private ValuteRepository valuteRepository;
 
 
-    public List<Valute> getAllValutes () {
+    public List<Сurrency> getAllValutes () {
         return valuteRepository.findAll();
     }
 
-    public Valute getValute (String id) {
-        Valute valute = null;
-        Optional<Valute> optional = valuteRepository.findById(id);
+    public Сurrency getValute (String id) {
+        Сurrency сurrency = null;
+        Optional<Сurrency> optional = valuteRepository.findById(id);
         if (optional.isPresent()){
-            valute = optional.get();
+            сurrency = optional.get();
         }
-        return valute;
+        return сurrency;
     }
 
-    public void saveValute (Valute valute){
-        valuteRepository.save(valute);
+    public void saveValute (Сurrency сurrency){
+        valuteRepository.save(сurrency);
     }
 }
