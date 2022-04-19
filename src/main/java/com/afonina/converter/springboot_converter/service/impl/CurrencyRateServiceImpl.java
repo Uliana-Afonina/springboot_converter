@@ -16,11 +16,11 @@ public class CurrencyRateServiceImpl implements CurrencyRateService {
     private ValuteRepository valuteRepository;
 
 
-    public List<CurrencyRate> getAllCurrencies() {
+    public List<CurrencyRate> getAllCurrencyRates() {
         return valuteRepository.findAll();
     }
 
-    public CurrencyRate getCurrency(String id) {
+    public CurrencyRate getCurrencyRate(String id) {
         CurrencyRate currencyRate = null;
         Optional<CurrencyRate> optional = valuteRepository.findById(id);
         if (optional.isPresent()){
@@ -29,11 +29,11 @@ public class CurrencyRateServiceImpl implements CurrencyRateService {
         return currencyRate;
     }
 
-    public void saveCurrency(CurrencyRate currencyRate){
+    public void saveCurrencyRate(CurrencyRate currencyRate){
         valuteRepository.save(currencyRate);
     }
 
-    public void saveAllCurrency(List<CurrencyRate> currencies){
-        valuteRepository.saveAll(currencies);
+    public void saveAllCurrencyRates(List<CurrencyRate> currencyRates){
+        valuteRepository.saveAll(currencyRates);
     }
 }

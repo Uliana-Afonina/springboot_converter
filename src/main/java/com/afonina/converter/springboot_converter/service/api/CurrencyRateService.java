@@ -5,11 +5,11 @@ import com.afonina.converter.springboot_converter.entity.CurrencyRate;
 import java.util.List;
 
 public interface CurrencyRateService {
-    public List<CurrencyRate> getAllCurrencies();
+    public List<CurrencyRate> getAllCurrencyRates();
 
-    public CurrencyRate getCurrency(String id);
+    public CurrencyRate getCurrencyRate(String id);
 
-    public void saveCurrency(CurrencyRate currencyRate);
+    public void saveCurrencyRate(CurrencyRate currencyRate);
 
-    public void saveAllCurrency(List<CurrencyRate> currencyis);
+    public void saveAllCurrencyRates(List<CurrencyRate> currencyRates);
 }

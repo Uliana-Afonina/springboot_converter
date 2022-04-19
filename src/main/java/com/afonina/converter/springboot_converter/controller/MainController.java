@@ -16,15 +16,21 @@ public class MainController {
 
     @GetMapping("/currencyRates")
     public List<CurrencyRate> getAllCurrencyRates() {
-        List<CurrencyRate> allCurrencyRates = currencyRateService.getAllCurrencies();
+        List<CurrencyRate> allCurrencyRates = currencyRateService.getAllCurrencyRates();
         return allCurrencyRates;
     }
 
     @PostMapping("/currencyRates")
     public List<CurrencyRate> saveAllCurrencyRates(@RequestBody List<CurrencyRate> currencyRates) {
-        currencyRateService.saveAllCurrency(currencyRates);
+        currencyRateService.saveAllCurrencyRates(currencyRates);
         return currencyRates;
     }
+
+//    @GetMapping("/currencyRates/{char_code}")
+//    public CurrencyRate getCurrencyRates(@RequestBody String name) {
+//        currencyRateService.getCurrencyRate(name);
+//        return currencyRates;
+//    }
 //    @GetMapping()
 //    public List<Currency> getAllCurrencies() {
 //        return "index";

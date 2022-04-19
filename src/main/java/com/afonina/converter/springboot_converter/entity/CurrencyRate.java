@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "currencyrates")
 public class CurrencyRate {
-    @Id
+
     @Column(name = "id")
     private String id;
 
@@ -25,6 +25,7 @@ public class CurrencyRate {
     @Column(name = "exchange_rate_to_ruble")
     public String exchangeRateToRuble;
 
+    @Id
     @Column(name = "char_code")
     private String charCode;
 
