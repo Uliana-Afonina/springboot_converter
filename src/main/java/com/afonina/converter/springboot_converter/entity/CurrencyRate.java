@@ -13,31 +13,25 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "currencies")
-public class Currency {
+@Table(name = "currencyrates")
+public class CurrencyRate {
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     private String id;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     public String name;
 
-    @Column(name = "Exchange_rate")
+    @Column(name = "exchange_rate_to_ruble")
     public String exchangeRateToRuble;
 
-//    @Column(name = "Value")
-//    public String value;
-//
-//    @Column(name = "Nominal")
-//    public String nominal;
-
-    @Column(name = "CharCode")
+    @Column(name = "char_code")
     private String charCode;
 
-    @Column(name = "NumCode")
+    @Column(name = "num_code")
     private String numCode;
 
-    @Column(name = "Date")
+    @Column(name = "date")
     private String date;
 
 }
