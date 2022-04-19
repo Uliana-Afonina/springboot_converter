@@ -1,12 +1,11 @@
 package com.afonina.converter.springboot_converter.service.impl;
 
-import com.afonina.converter.springboot_converter.dao.ValuteRepository;
+import com.afonina.converter.springboot_converter.dao.CurrencyRateRepository;
 import com.afonina.converter.springboot_converter.entity.CurrencyRate;
 import com.afonina.converter.springboot_converter.service.api.CurrencyRateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,16 +13,16 @@ import java.util.Optional;
 public class CurrencyRateServiceImpl implements CurrencyRateService {
 
     @Autowired
-    private ValuteRepository valuteRepository;
+    private CurrencyRateRepository currencyRateRepository;
 
 
     public List<CurrencyRate> getAllCurrencyRates() {
-        return valuteRepository.findAll();
+        return currencyRateRepository.findAll();
     }
 
     public CurrencyRate getCurrencyRateByCharCode(String charCode) {
         CurrencyRate currencyRate = null;
-        Optional<CurrencyRate> optional = valuteRepository.findById(charCode); //в CurrencyRate качестве @Id указано поле charCode
+        Optional<CurrencyRate> optional = currencyRateRepository.findById(charCode); //в CurrencyRate качестве @Id указано поле charCode
         if (optional.isPresent()){
             currencyRate = optional.get();
         }
@@ -31,11 +30,11 @@ public class CurrencyRateServiceImpl implements CurrencyRateService {
     }
 
     public void saveCurrencyRate(CurrencyRate currencyRate){
-        valuteRepository.save(currencyRate);
+        currencyRateRepository.save(currencyRate);
     }
 
     public void saveAllCurrencyRates(List<CurrencyRate> currencyRates){
-        valuteRepository.saveAll(currencyRates);
+        currencyRateRepository.saveAll(currencyRates);
     }
 
 
