@@ -9,17 +9,13 @@ import java.net.URL;
 public class LoadService {
 //    private static final int CONNECTION_TIMEOUT = 10000;
 //    private static final int READ_TIMEOUT = 100;
-
-    public void loadXMLfromURL() {
+// url = http://www.cbr.ru/scripts/XML_daily.asp
+//    filePath = src/main/resources/xml/file_name.xml
+    public void loadXMLfromURL(String url, String filePath) {
         try {
-//            FileUtils.copyURLToFile(
-//                    new URL("http://www.cbr.ru/scripts/XML_daily.asp"),
-//                    new File("src/main/java/forSulimov/resources/file_name.xml"),
-//                    CONNECTION_TIMEOUT,
-//                    READ_TIMEOUT);
             FileUtils.copyURLToFile(
-                    new URL("http://www.cbr.ru/scripts/XML_daily.asp"),
-                    new File("src/main/resources/xml/file_name.xml"));
+                    new URL(url),
+                    new File(filePath));
         } catch (IOException e) {
             e.printStackTrace();
         }

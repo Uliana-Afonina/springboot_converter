@@ -15,7 +15,7 @@ class TransformFromXmlServiceTest {
 
     @Test
     public void getCurrencies () {
-        ValutesCurses valutesCurses = marshallerService.getValutesCurses();
+        ValutesCurses valutesCurses = marshallerService.getValutesCursesFromXmlFile("src/main/resources/xml/valutesFromCBRF.xml");
         List<CurrencyRate> сurrencies = transformFromXmlService.getCurrenciesFromValutesCurses(valutesCurses);
         System.out.println(сurrencies);
     }

@@ -8,11 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 class SpringbootConverterApplicationTests {
 
 	MarshallerService marshallerService = new MarshallerService();
+	private String pathName = "src/main/resources/xml/valutesFromCBRF.xml";
 
 	@Test
 	void contextLoads() {
 
-		System.out.println(marshallerService.getValutesCurses());
+		System.out.println(marshallerService.getValutesCursesFromXmlFile(pathName));
 	}
 
 }

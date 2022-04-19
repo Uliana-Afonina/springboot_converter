@@ -13,10 +13,11 @@ import java.net.URL;
 
 @Service
 public class MarshallerService {
+//"src/main/resources/xml/valutesFromCBRF.xml"
 
-    public ValutesCurses getValutesCurses() {
+    public ValutesCurses getValutesCursesFromXmlFile(String pathName) {
         ValutesCurses valutesCurses = null;
-        File file = new File("src/main/resources/xml/file_name.xml");
+        File file = new File(pathName);
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(ValutesCurses.class);
             Unmarshaller unmarshaller  = jaxbContext.createUnmarshaller();
