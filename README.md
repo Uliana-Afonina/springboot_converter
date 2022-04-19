@@ -9,5 +9,5 @@ CREATE TABLE my_db.currencyRates (
   char_code varchar(15),
   num_code varchar(15),
   date varchar(10),
-  PRIMARY KEY (id)
+  PRIMARY KEY (char_code)
 );
