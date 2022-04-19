@@ -26,11 +26,11 @@ public class MainController {
         return currencyRates;
     }
 
-//    @GetMapping("/currencyRates/{char_code}")
-//    public CurrencyRate getCurrencyRates(@RequestBody String name) {
-//        currencyRateService.getCurrencyRate(name);
-//        return currencyRates;
-//    }
+    @GetMapping("/currencyRates/{charCode}")
+    public CurrencyRate getCurrencyRates(@PathVariable String charCode) {
+        CurrencyRate currencyRate = currencyRateService.getCurrencyRateByCharCode(charCode);
+        return currencyRate;
+    }
 //    @GetMapping()
 //    public List<Currency> getAllCurrencies() {
 //        return "index";

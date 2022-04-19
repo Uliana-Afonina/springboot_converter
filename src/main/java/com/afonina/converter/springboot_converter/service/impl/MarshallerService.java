@@ -2,6 +2,7 @@ package com.afonina.converter.springboot_converter.service.impl;
 
 import com.afonina.converter.springboot_converter.entity.ValutesCurses;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -10,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+@Service
 public class MarshallerService {
 
     public ValutesCurses getValutesCurses() {

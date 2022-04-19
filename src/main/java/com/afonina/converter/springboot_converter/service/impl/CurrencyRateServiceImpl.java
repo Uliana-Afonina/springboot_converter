@@ -6,6 +6,7 @@ import com.afonina.converter.springboot_converter.service.api.CurrencyRateServic
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,9 +21,9 @@ public class CurrencyRateServiceImpl implements CurrencyRateService {
         return valuteRepository.findAll();
     }
 
-    public CurrencyRate getCurrencyRate(String id) {
+    public CurrencyRate getCurrencyRateByCharCode(String charCode) {
         CurrencyRate currencyRate = null;
-        Optional<CurrencyRate> optional = valuteRepository.findById(id);
+        Optional<CurrencyRate> optional = valuteRepository.findById(charCode); //в CurrencyRate качестве @Id указано поле charCode
         if (optional.isPresent()){
             currencyRate = optional.get();
         }
@@ -36,4 +37,6 @@ public class CurrencyRateServiceImpl implements CurrencyRateService {
     public void saveAllCurrencyRates(List<CurrencyRate> currencyRates){
         valuteRepository.saveAll(currencyRates);
     }
+
+
 }

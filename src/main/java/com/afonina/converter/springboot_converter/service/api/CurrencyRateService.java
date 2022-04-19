@@ -7,7 +7,7 @@ import java.util.List;
 public interface CurrencyRateService {
     public List<CurrencyRate> getAllCurrencyRates();
 
-    public CurrencyRate getCurrencyRate(String id);
+    public CurrencyRate getCurrencyRateByCharCode(String id);
 
     public void saveCurrencyRate(CurrencyRate currencyRate);
 
