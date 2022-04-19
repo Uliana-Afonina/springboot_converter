@@ -24,7 +24,7 @@ public class ConvertService {
         BigDecimal targetCurrencyExchangeRateToRuble = new BigDecimal(targetCurrency.getExchangeRateToRuble());
         BigDecimal coefficientToDecimal = new BigDecimal(coefficient);
 
-        BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble).multiply(coefficientToDecimal);
+        BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble, 4).multiply(coefficientToDecimal);
         return result.toString();
     }
 

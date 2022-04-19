@@ -9,16 +9,26 @@ class CurrencyRateServiceImplTest {
     ConvertService convertService = new ConvertService();
     CurrencyRateServiceImpl currencyRateService = new CurrencyRateServiceImpl();
 
-    private CurrencyRate sourceCurrency = new CurrencyRate();
-    private CurrencyRate targetCurrency;
+    private CurrencyRate sourceCurrency = new CurrencyRate(
+            "R01010",
+            "Австралийский доллар",
+            "59.2560",
+            "AUD",
+            "036",
+            "16.04.2022"
+    );
+    private CurrencyRate targetCurrency = new CurrencyRate(
+            "R01020A",
+            "Азербайджанский манат",
+            "46.7370",
+            "AZN",
+            "944",
+            "16.04.2022"
+    );
 
     @Test
     public void convertTest() {
-
-
-        CurrencyRate targetCurrency = new CurrencyRate();
-        CurrencyRateServiceImpl currencyRateService = new CurrencyRateServiceImpl();
-        String convert = currencyRateService.convert(,,);
+        String convert = convertService.convert(sourceCurrency, targetCurrency, "3");
         System.out.println(convert);
     }
 }
