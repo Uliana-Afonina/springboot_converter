@@ -5,20 +5,18 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class CurrencyRateURLServiceTest {
-    CurrencyRateURLService currencyRateURLService = new CurrencyRateURLService();
+class CurrencyRateURLServiceImplTest {
+    CurrencyRateURLServiceImpl currencyRateURLServiceImpl = new CurrencyRateURLServiceImpl();
     LoadService loadService = new LoadService();
     TransformFromXmlService transformFromXmlService = new TransformFromXmlService();
     MarshallerService marshallerService = new MarshallerService();
 
     @Test
     public void getCurrencyRateFromURLTest() {
-        currencyRateURLService.setLoadService(loadService);
-        currencyRateURLService.setTransformFromXmlService(transformFromXmlService);
-        currencyRateURLService.setMarshallerService(marshallerService);
-        List<CurrencyRate> currencyRatesFromURL = currencyRateURLService.getCurrencyRatesFromURL();
+        currencyRateURLServiceImpl.setLoadService(loadService);
+        currencyRateURLServiceImpl.setTransformFromXmlService(transformFromXmlService);
+        currencyRateURLServiceImpl.setMarshallerService(marshallerService);
+        List<CurrencyRate> currencyRatesFromURL = currencyRateURLServiceImpl.getCurrencyRatesFromURL();
         System.out.println(currencyRatesFromURL);
     }
 }

@@ -1,7 +1,7 @@
 package com.afonina.converter.springboot_converter.service.impl;
 
 class CurrencyRateDAOServiceImplTest {
-    ConvertionService convertionService = new ConvertionService();
+    ConvertingService convertingService = new ConvertingService();
     CurrencyRateDAOServiceImpl currencyRateService = new CurrencyRateDAOServiceImpl();
 
     //    private CurrencyRate sourceCurrency = new CurrencyRate(

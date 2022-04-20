@@ -2,7 +2,7 @@ package com.afonina.converter.springboot_converter.controller;
 
 import com.afonina.converter.springboot_converter.service.api.CurrencyRateService;
 import com.afonina.converter.springboot_converter.entity.*;
-import com.afonina.converter.springboot_converter.service.impl.ConvertionService;
+import com.afonina.converter.springboot_converter.service.impl.ConvertingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +15,7 @@ public class ConvertionController {
     @Autowired
     private CurrencyRateService currencyRateService;
     @Autowired
-    private ConvertionService convertionService;
+    private ConvertingService convertingService;
 
     @GetMapping("/currencyRates")
     public List<CurrencyRate> getAllCurrencyRates() {

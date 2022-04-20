@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
-public class ConvertionService {
+public class ConvertingService {
 
     @Autowired
     private CurrencyRateService currencyRateService;
@@ -22,7 +22,9 @@ public class ConvertionService {
         return new BigDecimal(replace);
     }
 
-//    public String convert(String sourceCurrencyCode, String targetCurrencyCode, String coefficient) {
+
+    public String convert(String sourceCurrencyCode, String targetCurrencyCode, String coefficient) {
+        currencyRateService.getAllCurrencyRatesByToday();
 //
 //
 //        //идем в БД искать указанные курсы валют
@@ -38,8 +40,8 @@ public class ConvertionService {
 ////        BigDecimal coefficientToDecimal = new BigDecimal(coefficient);
 //
 ////        BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble, 4).multiply(coefficientToDecimal);
-//        return result.toString();
-//    }
+        return "";
+    }
 
 
 }

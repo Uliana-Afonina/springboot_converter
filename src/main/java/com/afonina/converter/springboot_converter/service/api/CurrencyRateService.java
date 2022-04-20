@@ -12,4 +12,6 @@ public interface CurrencyRateService {
     public void saveCurrencyRate(CurrencyRate currencyRate);
 
     public void saveAllCurrencyRates(List<CurrencyRate> currencyRates);
+
+    public List<CurrencyRate> getAllCurrencyRatesByToday();
 }
