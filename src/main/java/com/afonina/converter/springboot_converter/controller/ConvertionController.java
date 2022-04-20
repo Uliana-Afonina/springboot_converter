@@ -2,7 +2,7 @@ package com.afonina.converter.springboot_converter.controller;
 
 import com.afonina.converter.springboot_converter.service.api.CurrencyRateService;
 import com.afonina.converter.springboot_converter.entity.*;
-import com.afonina.converter.springboot_converter.service.impl.ConvertService;
+import com.afonina.converter.springboot_converter.service.impl.ConvertionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,12 +10,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
-public class MainController {
+public class ConvertionController {
 
     @Autowired
     private CurrencyRateService currencyRateService;
     @Autowired
-    private ConvertService convertService;
+    private ConvertionService convertionService;
 
     @GetMapping("/currencyRates")
     public List<CurrencyRate> getAllCurrencyRates() {
@@ -35,11 +35,12 @@ public class MainController {
         return currencyRate;
     }
 
-    @GetMapping("/currencyRates")
-    public String getConversionResult(@RequestBody CurrencyRate sourceCurrency, CurrencyRate targetCurrency, String coefficient) {
-        String result = convertService.convert(sourceCurrency, targetCurrency, coefficient);
-        return result;
-    }
+    //в полях ввода на фронте будут charCode-ы
+//    @GetMapping("/currencyRates")
+//    public String getConversionResult(@RequestBody String sourceCurrencyCode, String targetCurrencyCode, String coefficient) {
+//        String result = convertionService.convert(sourceCurrencyCode, targetCurrencyCode, coefficient);
+//        return result;
+//    }
 //    @GetMapping()
 //    public List<Currency> getAllCurrencies() {
 //        return "index";
