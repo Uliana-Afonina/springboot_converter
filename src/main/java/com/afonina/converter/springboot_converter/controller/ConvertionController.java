@@ -17,23 +17,23 @@ public class ConvertionController {
     @Autowired
     private ConvertingService convertingService;
 
-    @GetMapping("/currencyRates")
-    public List<CurrencyRate> getAllCurrencyRates() {
-        List<CurrencyRate> allCurrencyRates = currencyRateDAOService.getAllCurrencyRates();
-        return allCurrencyRates;
-    }
-
-    @PostMapping("/currencyRates")
-    public List<CurrencyRate> saveAllCurrencyRates(@RequestBody List<CurrencyRate> currencyRates) {
-        currencyRateDAOService.saveAllCurrencyRates(currencyRates);
-        return currencyRates;
-    }
-
-    @GetMapping("/currencyRates/{charCode}")
-    public CurrencyRate getCurrencyRates(@PathVariable String charCode) {
-        CurrencyRate currencyRate = currencyRateDAOService.getCurrencyRateByCharCode(charCode);
-        return currencyRate;
-    }
+//    @GetMapping("/currencyRates")
+//    public List<CurrencyRate> getAllCurrencyRates() {
+//        List<CurrencyRate> allCurrencyRates = currencyRateDAOService.getAllCurrencyRates();
+//        return allCurrencyRates;
+//    }
+//
+//    @PostMapping("/currencyRates")
+//    public List<CurrencyRate> saveAllCurrencyRates(@RequestBody List<CurrencyRate> currencyRates) {
+//        currencyRateDAOService.saveAllCurrencyRates(currencyRates);
+//        return currencyRates;
+//    }
+//
+//    @GetMapping("/currencyRates/{charCode}")
+//    public CurrencyRate getCurrencyRates(@PathVariable String charCode) {
+//        CurrencyRate currencyRate = currencyRateDAOService.getCurrencyRateByCharCode(charCode);
+//        return currencyRate;
+//    }
 
     //в полях ввода на фронте будут charCode-ы
     @GetMapping(value = "/converter")

@@ -22,9 +22,20 @@ public class ConvertingService {
     private CurrencyRateDAOService currencyRateDAOService;
     @Autowired
     private CurrencyRateURLService currencyRateURLService;
+    @Autowired
+    private RubleCurrencyConverterService rubleCurrencyConverterService;
+    @Autowired
+    private NonRubleCurrencyConversionService nonRubleCurrencyConversionService;
 
     public String convert(String sourceCurrencyCode, String targetCurrencyCode, String coefficient) {
         Map<String, CurrencyRate> currencyRateHashMap = getCurrencyRateMap();
+
+//        if (sourceCurrencyCode.equals("RUB")||targetCurrencyCode.equals("RUB")) {
+//            rubleCurrencyConverterService.convert(sourceCurrencyCode, targetCurrencyCode, coefficient);
+//        } else {
+//            nonRubleCurrencyConversionService.convert(sourceCurrencyCode, targetCurrencyCode, coefficient);
+//        }
+
         BigDecimal sourceCurrencyExchangeRateToRuble = BigDecimal.ZERO;
         BigDecimal targetCurrencyExchangeRateToRuble = BigDecimal.ZERO;
 
@@ -40,7 +51,11 @@ public class ConvertingService {
             sourceCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(sourceCurrencyCode, currencyRateHashMap);
             targetCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(targetCurrencyCode, currencyRateHashMap);
         }
+//        if (sourceCurrencyCode.equals(null)||targetCurrencyCode.equals(null)) {
+//            throw new RuntimeException();
+//        }
         BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble, 4).multiply(new BigDecimal(coefficient));
+
         return result.toString();
     }
 
