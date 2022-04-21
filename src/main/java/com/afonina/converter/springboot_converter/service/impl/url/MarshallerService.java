@@ -1,15 +1,12 @@
 package com.afonina.converter.springboot_converter.service.impl.url;
 
 import com.afonina.converter.springboot_converter.entity.ValutesCurses;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 
 @Service
 public class MarshallerService {
