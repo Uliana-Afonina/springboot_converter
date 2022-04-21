@@ -11,3 +11,6 @@ CREATE TABLE my_db.currencyRates (
   date varchar(10),
   PRIMARY KEY (char_code)
 );
+
+get-запрос
+http://localhost:8080/converter?sourceCurrencyCode=AUD&targetCurrencyCode=AZN&coefficient=2
