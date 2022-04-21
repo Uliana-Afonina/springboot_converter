@@ -6,9 +6,11 @@ import com.afonina.converter.springboot_converter.service.api.CurrencyRateURLSer
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 @Setter
 public class CurrencyRateURLServiceImpl implements CurrencyRateURLService {
     public static final String URL_CBRF_RATES = "http://www.cbr.ru/scripts/XML_daily.asp";

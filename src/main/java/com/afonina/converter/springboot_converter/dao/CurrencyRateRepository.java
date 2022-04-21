@@ -6,5 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface CurrencyRateRepository extends JpaRepository<CurrencyRate, String> {
-    List<CurrencyRate> findAllByDate(String date);
+    default List<CurrencyRate> findAllByDate(String date) {
+        return null;
+    }
 }
