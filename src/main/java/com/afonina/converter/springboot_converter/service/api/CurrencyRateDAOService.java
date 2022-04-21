@@ -9,8 +9,6 @@ public interface CurrencyRateDAOService {
 
     CurrencyRate getCurrencyRateByCharCode(String id);
 
-    void saveCurrencyRate(CurrencyRate currencyRate);
-
     void saveAllCurrencyRates(List<CurrencyRate> currencyRates);
 
     List<CurrencyRate> findAllByDate(String date);

@@ -21,15 +21,7 @@ public class ConvertingService {
     @Autowired
     private CurrencyRateDAOService currencyRateDAOService;
     @Autowired
-    private LoadService loadService;
-    @Autowired
     private CurrencyRateURLService currencyRateURLService;
-
-    public BigDecimal getBigDecimalFromString(String string) {
-        String replace = string.replace(",", ".");
-        return new BigDecimal(replace);
-    }
-
 
     public String convert(String sourceCurrencyCode, String targetCurrencyCode, String coefficient) {
         Map<String, CurrencyRate> currencyRateHashMap = getCurrencyRateMap();
@@ -63,8 +55,11 @@ public class ConvertingService {
     private String getCurrentDate() {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.YYYY");
-        String currentDate = formatter.format(date);
-        return currentDate;
+        return formatter.format(date);
     }
 
+    public BigDecimal getBigDecimalFromString(String string) {
+        String replace = string.replace(",", ".");
+        return new BigDecimal(replace);
+    }
 }

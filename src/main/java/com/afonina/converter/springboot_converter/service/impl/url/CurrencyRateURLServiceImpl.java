@@ -1,9 +1,8 @@
-package com.afonina.converter.springboot_converter.service.impl;
+package com.afonina.converter.springboot_converter.service.impl.url;
 
 import com.afonina.converter.springboot_converter.entity.CurrencyRate;
 import com.afonina.converter.springboot_converter.entity.ValutesCurses;
 import com.afonina.converter.springboot_converter.service.api.CurrencyRateURLService;
-import lombok.AllArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

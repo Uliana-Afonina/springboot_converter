@@ -1,8 +1,7 @@
 package com.afonina.converter.springboot_converter.service.impl;
 
+import com.afonina.converter.springboot_converter.service.impl.url.LoadService;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LoadServiceTest {
     LoadService loadService = new LoadService();

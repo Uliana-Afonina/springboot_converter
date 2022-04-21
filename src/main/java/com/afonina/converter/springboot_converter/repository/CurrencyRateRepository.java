@@ -1,4 +1,4 @@
-package com.afonina.converter.springboot_converter.dao;
+package com.afonina.converter.springboot_converter.repository;
 
 import com.afonina.converter.springboot_converter.entity.CurrencyRate;
 import org.springframework.data.jpa.repository.JpaRepository;

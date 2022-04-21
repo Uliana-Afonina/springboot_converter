@@ -1,7 +1,7 @@
 package com.afonina.converter.springboot_converter.service;
 
 import com.afonina.converter.springboot_converter.entity.ValutesCurses;
-import com.afonina.converter.springboot_converter.service.impl.MarshallerService;
+import com.afonina.converter.springboot_converter.service.impl.url.MarshallerService;
 import org.junit.jupiter.api.Test;
 
 class MarshallerServiceTest {

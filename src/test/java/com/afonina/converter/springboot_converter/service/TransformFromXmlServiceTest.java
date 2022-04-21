@@ -2,8 +2,8 @@ package com.afonina.converter.springboot_converter.service;
 
 import com.afonina.converter.springboot_converter.entity.CurrencyRate;
 import com.afonina.converter.springboot_converter.entity.ValutesCurses;
-import com.afonina.converter.springboot_converter.service.impl.MarshallerService;
-import com.afonina.converter.springboot_converter.service.impl.TransformFromXmlService;
+import com.afonina.converter.springboot_converter.service.impl.url.MarshallerService;
+import com.afonina.converter.springboot_converter.service.impl.url.TransformFromXmlService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
