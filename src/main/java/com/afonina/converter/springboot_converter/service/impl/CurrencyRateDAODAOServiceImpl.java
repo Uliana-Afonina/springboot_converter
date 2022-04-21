@@ -2,18 +2,16 @@ package com.afonina.converter.springboot_converter.service.impl;
 
 import com.afonina.converter.springboot_converter.dao.CurrencyRateRepository;
 import com.afonina.converter.springboot_converter.entity.CurrencyRate;
-import com.afonina.converter.springboot_converter.service.api.CurrencyRateService;
+import com.afonina.converter.springboot_converter.service.api.CurrencyRateDAOService;
 import com.afonina.converter.springboot_converter.service.api.CurrencyRateURLService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CurrencyRateDAOServiceImpl implements CurrencyRateService {
+public class CurrencyRateDAODAOServiceImpl implements CurrencyRateDAOService {
 
     @Autowired
     private CurrencyRateRepository currencyRateRepository;
@@ -51,10 +49,6 @@ public class CurrencyRateDAOServiceImpl implements CurrencyRateService {
     @Override
     public List<CurrencyRate> findAllByDate(String date) {
         List<CurrencyRate> currencyRates = currencyRateRepository.findAllByDate(date);
-        if (currencyRates.isEmpty()) {
-            currencyRates = currencyRateURLService.getCurrencyRatesFromURL();
-            saveAllCurrencyRates(currencyRates);
-        }
         return currencyRates;
     }
 }

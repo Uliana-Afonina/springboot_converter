@@ -4,7 +4,7 @@ import com.afonina.converter.springboot_converter.entity.CurrencyRate;
 
 import java.util.List;
 
-public interface CurrencyRateService {
+public interface CurrencyRateDAOService {
     List<CurrencyRate> getAllCurrencyRates();
 
     CurrencyRate getCurrencyRateByCharCode(String id);

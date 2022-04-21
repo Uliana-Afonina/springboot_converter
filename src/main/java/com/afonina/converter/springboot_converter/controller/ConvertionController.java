@@ -1,9 +1,8 @@
 package com.afonina.converter.springboot_converter.controller;
 
-import com.afonina.converter.springboot_converter.service.api.CurrencyRateService;
+import com.afonina.converter.springboot_converter.service.api.CurrencyRateDAOService;
 import com.afonina.converter.springboot_converter.entity.*;
 import com.afonina.converter.springboot_converter.service.impl.ConvertingService;
-import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,25 +13,25 @@ import java.util.List;
 public class ConvertionController {
 
     @Autowired
-    private CurrencyRateService currencyRateService;
+    private CurrencyRateDAOService currencyRateDAOService;
     @Autowired
     private ConvertingService convertingService;
 
     @GetMapping("/currencyRates")
     public List<CurrencyRate> getAllCurrencyRates() {
-        List<CurrencyRate> allCurrencyRates = currencyRateService.getAllCurrencyRates();
+        List<CurrencyRate> allCurrencyRates = currencyRateDAOService.getAllCurrencyRates();
         return allCurrencyRates;
     }
 
     @PostMapping("/currencyRates")
     public List<CurrencyRate> saveAllCurrencyRates(@RequestBody List<CurrencyRate> currencyRates) {
-        currencyRateService.saveAllCurrencyRates(currencyRates);
+        currencyRateDAOService.saveAllCurrencyRates(currencyRates);
         return currencyRates;
     }
 
     @GetMapping("/currencyRates/{charCode}")
     public CurrencyRate getCurrencyRates(@PathVariable String charCode) {
-        CurrencyRate currencyRate = currencyRateService.getCurrencyRateByCharCode(charCode);
+        CurrencyRate currencyRate = currencyRateDAOService.getCurrencyRateByCharCode(charCode);
         return currencyRate;
     }
 

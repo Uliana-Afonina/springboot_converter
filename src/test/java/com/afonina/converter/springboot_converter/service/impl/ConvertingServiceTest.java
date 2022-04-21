@@ -1,11 +1,5 @@
 package com.afonina.converter.springboot_converter.service.impl;
 
-import com.afonina.converter.springboot_converter.dao.CurrencyRateRepository;
-import com.afonina.converter.springboot_converter.service.api.CurrencyRateService;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 class ConvertingServiceTest {
 //    ConvertingService convertingService = new ConvertingService();
 //    CurrencyRateService currencyRateService = new CurrencyRateDAOServiceImpl();

@@ -1,7 +1,7 @@
 package com.afonina.converter.springboot_converter.service.impl;
 
 import com.afonina.converter.springboot_converter.entity.CurrencyRate;
-import com.afonina.converter.springboot_converter.service.api.CurrencyRateService;
+import com.afonina.converter.springboot_converter.service.api.CurrencyRateDAOService;
 import com.afonina.converter.springboot_converter.service.api.CurrencyRateURLService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ import java.util.Map;
 public class ConvertingService {
 
     @Autowired
-    private CurrencyRateService currencyRateService;
+    private CurrencyRateDAOService currencyRateDAOService;
     @Autowired
     private LoadService loadService;
     @Autowired
@@ -32,25 +32,29 @@ public class ConvertingService {
 
 
     public String convert(String sourceCurrencyCode, String targetCurrencyCode, String coefficient) {
-        BigDecimal sourceCurrencyExchangeRateToRuble = BigDecimal.ZERO;
-        BigDecimal targetCurrencyExchangeRateToRuble = BigDecimal.ZERO;
-        BigDecimal coefficientToDecimal = new BigDecimal(coefficient);
-
         Map<String, CurrencyRate> currencyRateHashMap = getCurrencyRateMap();
-
-        if (currencyRateHashMap.containsKey(sourceCurrencyCode)) {
-            sourceCurrencyExchangeRateToRuble = getBigDecimalFromString(currencyRateHashMap.get(sourceCurrencyCode).getExchangeRateToRuble());
-        }
-        if (currencyRateHashMap.containsKey(targetCurrencyCode)) {
-            targetCurrencyExchangeRateToRuble = getBigDecimalFromString(currencyRateHashMap.get(targetCurrencyCode).getExchangeRateToRuble());
-        }
-
-        BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble, 4).multiply(coefficientToDecimal);
+        BigDecimal sourceCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(sourceCurrencyCode, currencyRateHashMap);
+        BigDecimal targetCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(targetCurrencyCode, currencyRateHashMap);
+        BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble, 4).multiply(new BigDecimal(coefficient));
         return result.toString();
     }
 
+    private BigDecimal getSourceCurrencyExchangeRateToRuble(String sourceCurrencyCode, Map<String, CurrencyRate> currencyRateHashMap) {
+        if (currencyRateHashMap.containsKey(sourceCurrencyCode)) {
+            return getBigDecimalFromString(currencyRateHashMap.get(sourceCurrencyCode).getExchangeRateToRuble());
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
     private Map<String, CurrencyRate> getCurrencyRateMap() {
-        List<CurrencyRate> allCurrencyRatesByToday = currencyRateService.findAllByDate(getCurrentDate());
+        List<CurrencyRate> allCurrencyRatesByToday = currencyRateDAOService.findAllByDate(getCurrentDate());
+
+        if (allCurrencyRatesByToday.isEmpty()) {
+            allCurrencyRatesByToday = currencyRateURLService.getCurrencyRatesFromURL();
+            currencyRateDAOService.saveAllCurrencyRates(allCurrencyRatesByToday);
+        }
+
         Map<String, CurrencyRate> currencyRateHashMap = new HashMap<>();
         allCurrencyRatesByToday.forEach(currencyRate -> currencyRateHashMap.put(currencyRate.getCharCode(), currencyRate));
         return currencyRateHashMap;
