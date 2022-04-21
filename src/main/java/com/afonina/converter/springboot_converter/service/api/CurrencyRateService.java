@@ -13,5 +13,5 @@ public interface CurrencyRateService {
 
     void saveAllCurrencyRates(List<CurrencyRate> currencyRates);
 
-    List<CurrencyRate> getAllCurrencyRatesByToday();
+    List<CurrencyRate> findAllByDate(String date);
 }

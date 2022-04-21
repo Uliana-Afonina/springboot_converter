@@ -2,6 +2,7 @@ package com.afonina.converter.springboot_converter.service.impl;
 
 import com.afonina.converter.springboot_converter.entity.CurrencyRate;
 import com.afonina.converter.springboot_converter.service.api.CurrencyRateService;
+import com.afonina.converter.springboot_converter.service.api.CurrencyRateURLService;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 @Service
 @Setter
@@ -22,6 +22,8 @@ public class ConvertingService {
     private CurrencyRateService currencyRateService;
     @Autowired
     private LoadService loadService;
+    @Autowired
+    private CurrencyRateURLService currencyRateURLService;
 
     public BigDecimal getBigDecimalFromString(String string) {
         String replace = string.replace(",", ".");
@@ -48,11 +50,17 @@ public class ConvertingService {
     }
 
     private Map<String, CurrencyRate> getCurrencyRateMap() {
-        List<CurrencyRate> allCurrencyRatesByToday = currencyRateService.getAllCurrencyRatesByToday();
+        List<CurrencyRate> allCurrencyRatesByToday = currencyRateService.findAllByDate(getCurrentDate());
         Map<String, CurrencyRate> currencyRateHashMap = new HashMap<>();
         allCurrencyRatesByToday.forEach(currencyRate -> currencyRateHashMap.put(currencyRate.getCharCode(), currencyRate));
         return currencyRateHashMap;
     }
 
+    private String getCurrentDate() {
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.YYYY");
+        String currentDate = formatter.format(date);
+        return currentDate;
+    }
 
 }

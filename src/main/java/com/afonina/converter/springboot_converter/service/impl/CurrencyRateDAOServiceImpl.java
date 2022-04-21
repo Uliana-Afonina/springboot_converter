@@ -3,6 +3,7 @@ package com.afonina.converter.springboot_converter.service.impl;
 import com.afonina.converter.springboot_converter.dao.CurrencyRateRepository;
 import com.afonina.converter.springboot_converter.entity.CurrencyRate;
 import com.afonina.converter.springboot_converter.service.api.CurrencyRateService;
+import com.afonina.converter.springboot_converter.service.api.CurrencyRateURLService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class CurrencyRateDAOServiceImpl implements CurrencyRateService {
     @Autowired
     private TransformFromXmlService transformFromXmlService;
     @Autowired
-    private CurrencyRateURLServiceImpl currencyRateURLServiceImpl;
+    private CurrencyRateURLService currencyRateURLService;
 
 
     public List<CurrencyRate> getAllCurrencyRates() {
@@ -48,20 +49,12 @@ public class CurrencyRateDAOServiceImpl implements CurrencyRateService {
     }
 
     @Override
-    public List<CurrencyRate> getAllCurrencyRatesByToday() {
-        List<CurrencyRate> currencyRates = currencyRateRepository.findAllByDate(getCurrentDate());
-        if (currencyRates == null) {
-            currencyRates = currencyRateURLServiceImpl.getCurrencyRatesFromURL();
+    public List<CurrencyRate> findAllByDate(String date) {
+        List<CurrencyRate> currencyRates = currencyRateRepository.findAllByDate(date);
+        if (currencyRates.isEmpty()) {
+            currencyRates = currencyRateURLService.getCurrencyRatesFromURL();
             saveAllCurrencyRates(currencyRates);
         }
         return currencyRates;
     }
-
-    private String getCurrentDate() {
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.YYYY");
-        String currentDate = formatter.format(date);
-        return currentDate;
-    }
-
 }
