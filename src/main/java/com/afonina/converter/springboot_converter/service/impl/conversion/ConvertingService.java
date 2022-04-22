@@ -31,31 +31,6 @@ public class ConvertingService {
     @Autowired
     private NonRubleCurrencyConversionService nonRubleCurrencyConversionService;
 
-    public String conversionWithRuble(String sourceCurrencyCode, String targetCurrencyCode, String coefficient, Map<String, CurrencyRate> currencyRateHashMapForToday) {
-        BigDecimal sourceCurrencyExchangeRateToRuble = BigDecimal.ZERO;
-        BigDecimal targetCurrencyExchangeRateToRuble = BigDecimal.ZERO;
-
-        if (sourceCurrencyCode.equals("RUB")) {
-            sourceCurrencyExchangeRateToRuble = new BigDecimal("1.0000");
-            targetCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(targetCurrencyCode, currencyRateHashMapForToday);
-        }
-        if (targetCurrencyCode.equals("RUB")) {
-            sourceCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(sourceCurrencyCode, currencyRateHashMapForToday);
-            targetCurrencyExchangeRateToRuble = new BigDecimal("1.0000");
-        }
-        BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble, 4).multiply(new BigDecimal(coefficient));
-        return result.toString();
-    }
-
-    public String conversionWithoutRuble(String sourceCurrencyCode, String targetCurrencyCode, String coefficient, Map<String, CurrencyRate> currencyRateHashMapForToday) {
-
-        BigDecimal sourceCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(sourceCurrencyCode, currencyRateHashMapForToday);
-        BigDecimal targetCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(targetCurrencyCode, currencyRateHashMapForToday);
-
-        BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble, 4).multiply(new BigDecimal(coefficient));
-        return result.toString();
-    }
-
     public String convert(String sourceCurrencyCode, String targetCurrencyCode, String coefficient) {
         Map<String, CurrencyRate> currencyRateHashMapForToday = getCurrencyRateMap();
         String result;
@@ -67,6 +42,28 @@ public class ConvertingService {
         }
         saveCurrencyConversion(sourceCurrencyCode, targetCurrencyCode, coefficient, currencyRateHashMapForToday, result);
         return result;
+    }
+
+    public String conversionWithRuble(String sourceCurrencyCode, String targetCurrencyCode, String coefficient, Map<String, CurrencyRate> currencyRateHashMapForToday) {
+        BigDecimal amount = new BigDecimal(coefficient + ".0000");
+        BigDecimal result = BigDecimal.ZERO;
+
+        if (sourceCurrencyCode.equals("RUB")) {
+            BigDecimal targetCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(targetCurrencyCode, currencyRateHashMapForToday);
+            result = amount.divide(targetCurrencyExchangeRateToRuble, 4);
+        }
+        if (targetCurrencyCode.equals("RUB")) {
+            BigDecimal sourceCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(sourceCurrencyCode, currencyRateHashMapForToday);
+            result = sourceCurrencyExchangeRateToRuble.multiply(amount);
+        }
+        return result.toString();
+    }
+
+    public String conversionWithoutRuble(String sourceCurrencyCode, String targetCurrencyCode, String coefficient, Map<String, CurrencyRate> currencyRateHashMapForToday) {
+        BigDecimal sourceCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(sourceCurrencyCode, currencyRateHashMapForToday);
+        BigDecimal targetCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(targetCurrencyCode, currencyRateHashMapForToday);
+        BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble, 4).multiply(new BigDecimal(coefficient));
+        return result.toString();
     }
 
     private void saveCurrencyConversion(String sourceCurrencyCode, String targetCurrencyCode, String coefficient, Map<String, CurrencyRate> currencyRateHashMapForToday, String result) {
