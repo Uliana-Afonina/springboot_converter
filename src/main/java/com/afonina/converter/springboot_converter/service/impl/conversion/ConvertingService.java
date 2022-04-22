@@ -67,52 +67,25 @@ public class ConvertingService {
     }
 
     private void saveCurrencyConversion(String sourceCurrencyCode, String targetCurrencyCode, String coefficient, Map<String, CurrencyRate> currencyRateHashMapForToday, String result) {
-        if (sourceCurrencyCode.equals("RUB")) {
-            currencyConversionDAOService.saveCurrencyConversion(
-                    new CurrencyConversion(
-                            "RUB(Российский рубль)",
-                            currencyRateHashMapForToday.get(targetCurrencyCode).getCharCode()
-                                    + "("
-                                    + currencyRateHashMapForToday.get(targetCurrencyCode).getName()
-                                    + ")",
-                            coefficient,
-                            result,
-                            currencyRateHashMapForToday.get(targetCurrencyCode).getDate()
-                    )
-            );
-        }
-        if (targetCurrencyCode.equals("RUB")) {
-            currencyConversionDAOService.saveCurrencyConversion(
-                    new CurrencyConversion(
-                            currencyRateHashMapForToday.get(sourceCurrencyCode).getCharCode()
-                                    + "("
-                                    + currencyRateHashMapForToday.get(sourceCurrencyCode).getName()
-                                    + ")",
-                            "RUB(Российский рубль)",
-                            coefficient,
-                            result,
-                            currencyRateHashMapForToday.get(sourceCurrencyCode).getDate()
-                    )
-            );
-        }
-        if (!sourceCurrencyCode.equals("RUB") && !(targetCurrencyCode.equals("RUB"))) {
-            currencyConversionDAOService.saveCurrencyConversion(
-                    new CurrencyConversion(
-                            currencyRateHashMapForToday.get(sourceCurrencyCode).getCharCode()
-                                    + "("
-                                    + currencyRateHashMapForToday.get(sourceCurrencyCode).getName()
-                                    + ")",
-                            currencyRateHashMapForToday.get(targetCurrencyCode).getCharCode()
-                                    + "("
-                                    + currencyRateHashMapForToday.get(targetCurrencyCode).getName()
-                                    + ")",
-                            coefficient,
-                            result,
-                            currencyRateHashMapForToday.get(sourceCurrencyCode).getDate()
-                    )
-            );
-        }
+        String source = sourceCurrencyCode.equals("RUB") ? "RUB(Российский рубль)" : getCurrencyForCurrencyConversions(sourceCurrencyCode, currencyRateHashMapForToday);
+        String target = targetCurrencyCode.equals("RUB") ? "RUB(Российский рубль)" : getCurrencyForCurrencyConversions(targetCurrencyCode, currencyRateHashMapForToday);
 
+        currencyConversionDAOService.saveCurrencyConversion(
+                new CurrencyConversion(
+                        source,
+                        target,
+                        coefficient,
+                        result,
+                        getCurrentDate()
+                )
+        );
+    }
+
+    private String getCurrencyForCurrencyConversions(String sourceCurrencyCode, Map<String, CurrencyRate> currencyRateHashMapForToday) {
+        return currencyRateHashMapForToday.get(sourceCurrencyCode).getCharCode()
+                + "("
+                + currencyRateHashMapForToday.get(sourceCurrencyCode).getName()
+                + ")";
     }
 
     private BigDecimal getSourceCurrencyExchangeRateToRuble(String sourceCurrencyCode, Map<String, CurrencyRate> currencyRateHashMap) {
