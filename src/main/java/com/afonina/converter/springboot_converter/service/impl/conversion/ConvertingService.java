@@ -60,47 +60,62 @@ public class ConvertingService {
         Map<String, CurrencyRate> currencyRateHashMapForToday = getCurrencyRateMap();
         String result;
 
-        if (sourceCurrencyCode.equals("RUB")||targetCurrencyCode.equals("RUB")) {
+        if (sourceCurrencyCode.equals("RUB") || targetCurrencyCode.equals("RUB")) {
             result = conversionWithRuble(sourceCurrencyCode, targetCurrencyCode, coefficient, currencyRateHashMapForToday);
         } else {
             result = conversionWithoutRuble(sourceCurrencyCode, targetCurrencyCode, coefficient, currencyRateHashMapForToday);
         }
-
-//        BigDecimal sourceCurrencyExchangeRateToRuble = BigDecimal.ZERO;
-//        BigDecimal targetCurrencyExchangeRateToRuble = BigDecimal.ZERO;
-//
-//        if (sourceCurrencyCode.equals("RUB")) {
-//            sourceCurrencyExchangeRateToRuble = new BigDecimal("1.0000");
-//            targetCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(targetCurrencyCode, currencyRateHashMapForToday);
-//        }
-//        if (targetCurrencyCode.equals("RUB")) {
-//            sourceCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(sourceCurrencyCode, currencyRateHashMapForToday);
-//            targetCurrencyExchangeRateToRuble = new BigDecimal("1.0000");
-//        }
-//        if (!(sourceCurrencyCode.equals("RUB")) && !(targetCurrencyCode.equals("RUB"))) {
-//            sourceCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(sourceCurrencyCode, currencyRateHashMapForToday);
-//            targetCurrencyExchangeRateToRuble = getSourceCurrencyExchangeRateToRuble(targetCurrencyCode, currencyRateHashMapForToday);
-//        }
-//        if (sourceCurrencyCode.equals(null)||targetCurrencyCode.equals(null)) {
-//            throw new RuntimeException();
-//        }
-//        BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble, 4).multiply(new BigDecimal(coefficient));
-        currencyConversionDAOService.saveCurrencyConversion(
-                new CurrencyConversion(
-                        currencyRateHashMapForToday.get(sourceCurrencyCode).getCharCode()
-                                + "("
-                                + currencyRateHashMapForToday.get(sourceCurrencyCode).getName()
-                                + ")",
-                        currencyRateHashMapForToday.get(targetCurrencyCode).getCharCode()
-                                + "("
-                                + currencyRateHashMapForToday.get(targetCurrencyCode).getName()
-                                + ")",
-                        coefficient,
-                        result,
-                        currencyRateHashMapForToday.get(sourceCurrencyCode).getDate()
-                )
-        );
+        saveCurrencyConversion(sourceCurrencyCode, targetCurrencyCode, coefficient, currencyRateHashMapForToday, result);
         return result;
+    }
+
+    private void saveCurrencyConversion(String sourceCurrencyCode, String targetCurrencyCode, String coefficient, Map<String, CurrencyRate> currencyRateHashMapForToday, String result) {
+        if (sourceCurrencyCode.equals("RUB")) {
+            currencyConversionDAOService.saveCurrencyConversion(
+                    new CurrencyConversion(
+                            "RUB(Российский рубль)",
+                            currencyRateHashMapForToday.get(targetCurrencyCode).getCharCode()
+                                    + "("
+                                    + currencyRateHashMapForToday.get(targetCurrencyCode).getName()
+                                    + ")",
+                            coefficient,
+                            result,
+                            currencyRateHashMapForToday.get(targetCurrencyCode).getDate()
+                    )
+            );
+        }
+        if (targetCurrencyCode.equals("RUB")) {
+            currencyConversionDAOService.saveCurrencyConversion(
+                    new CurrencyConversion(
+                            currencyRateHashMapForToday.get(sourceCurrencyCode).getCharCode()
+                                    + "("
+                                    + currencyRateHashMapForToday.get(sourceCurrencyCode).getName()
+                                    + ")",
+                            "RUB(Российский рубль)",
+                            coefficient,
+                            result,
+                            currencyRateHashMapForToday.get(sourceCurrencyCode).getDate()
+                    )
+            );
+        }
+        if (!sourceCurrencyCode.equals("RUB") && !(targetCurrencyCode.equals("RUB"))) {
+            currencyConversionDAOService.saveCurrencyConversion(
+                    new CurrencyConversion(
+                            currencyRateHashMapForToday.get(sourceCurrencyCode).getCharCode()
+                                    + "("
+                                    + currencyRateHashMapForToday.get(sourceCurrencyCode).getName()
+                                    + ")",
+                            currencyRateHashMapForToday.get(targetCurrencyCode).getCharCode()
+                                    + "("
+                                    + currencyRateHashMapForToday.get(targetCurrencyCode).getName()
+                                    + ")",
+                            coefficient,
+                            result,
+                            currencyRateHashMapForToday.get(sourceCurrencyCode).getDate()
+                    )
+            );
+        }
+
     }
 
     private BigDecimal getSourceCurrencyExchangeRateToRuble(String sourceCurrencyCode, Map<String, CurrencyRate> currencyRateHashMap) {
