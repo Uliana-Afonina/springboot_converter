@@ -5,11 +5,12 @@ import com.afonina.converter.springboot_converter.service.impl.url.CurrencyRateU
 import com.afonina.converter.springboot_converter.service.impl.url.LoadService;
 import com.afonina.converter.springboot_converter.service.impl.url.MarshallerService;
 import com.afonina.converter.springboot_converter.service.impl.url.TransformFromXmlService;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
 
 import java.util.List;
 
-class CurrencyRateURLServiceImplTest {
+public class CurrencyRateURLServiceImplTest {
     CurrencyRateURLServiceImpl currencyRateURLServiceImpl = new CurrencyRateURLServiceImpl();
     LoadService loadService = new LoadService();
     TransformFromXmlService transformFromXmlService = new TransformFromXmlService();
@@ -21,6 +22,11 @@ class CurrencyRateURLServiceImplTest {
         currencyRateURLServiceImpl.setTransformFromXmlService(transformFromXmlService);
         currencyRateURLServiceImpl.setMarshallerService(marshallerService);
         List<CurrencyRate> currencyRatesFromURL = currencyRateURLServiceImpl.getCurrencyRatesFromURL();
+        //TODO Assert.assertEquals(currencyRatesFromURL.get(0), new CurrencyRate())
+
+
+
+
         System.out.println(currencyRatesFromURL);
     }
 }
