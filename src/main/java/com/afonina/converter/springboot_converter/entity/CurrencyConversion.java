@@ -2,14 +2,10 @@ package com.afonina.converter.springboot_converter.entity;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
@@ -17,6 +13,7 @@ import javax.persistence.Table;
 public class CurrencyConversion {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
 
@@ -34,4 +31,12 @@ public class CurrencyConversion {
 
     @Column(name="date")
     private String date;
+
+    public CurrencyConversion(String sourceCurrency, String targetCurrency, String sourceAmount, String receivedAmount, String date) {
+        this.sourceCurrency = sourceCurrency;
+        this.targetCurrency = targetCurrency;
+        this.sourceAmount = sourceAmount;
+        this.receivedAmount = receivedAmount;
+        this.date = date;
+    }
 }
