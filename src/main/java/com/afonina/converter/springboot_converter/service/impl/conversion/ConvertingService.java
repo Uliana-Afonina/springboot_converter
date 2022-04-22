@@ -26,21 +26,23 @@ public class ConvertingService {
     private CurrencyRateURLService currencyRateURLService;
     @Autowired
     private CurrencyConversionDAOService currencyConversionDAOService;
-    @Autowired
-    private RubleCurrencyConverterService rubleCurrencyConverterService;
-    @Autowired
-    private NonRubleCurrencyConversionService nonRubleCurrencyConversionService;
 
     public String convert(String sourceCurrencyCode, String targetCurrencyCode, String coefficient) {
         Map<String, CurrencyRate> currencyRateHashMapForToday = getCurrencyRateMap();
-        String result;
+        String result = getCalculatedValue(sourceCurrencyCode, targetCurrencyCode, coefficient, currencyRateHashMapForToday);
+        saveCurrencyConversion(sourceCurrencyCode, targetCurrencyCode, coefficient, currencyRateHashMapForToday, result);
+        return result;
+    }
 
-        if (sourceCurrencyCode.equals("RUB") || targetCurrencyCode.equals("RUB")) {
+    private String getCalculatedValue(String sourceCurrencyCode, String targetCurrencyCode, String coefficient, Map<String, CurrencyRate> currencyRateHashMapForToday) {
+        String result;
+        if (sourceCurrencyCode.equals("RUB") && targetCurrencyCode.equals("RUB")) {
+            result = coefficient;
+        } else if (sourceCurrencyCode.equals("RUB") || targetCurrencyCode.equals("RUB")) {
             result = conversionWithRuble(sourceCurrencyCode, targetCurrencyCode, coefficient, currencyRateHashMapForToday);
         } else {
             result = conversionWithoutRuble(sourceCurrencyCode, targetCurrencyCode, coefficient, currencyRateHashMapForToday);
         }
-        saveCurrencyConversion(sourceCurrencyCode, targetCurrencyCode, coefficient, currencyRateHashMapForToday, result);
         return result;
     }
 
