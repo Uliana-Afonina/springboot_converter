@@ -61,8 +61,14 @@ public class ConvertingService {
         BigDecimal result = sourceCurrencyExchangeRateToRuble.divide(targetCurrencyExchangeRateToRuble, 4).multiply(new BigDecimal(coefficient));
         currencyConversionDAOService.saveCurrencyConversion(
                 new CurrencyConversion(
-                        currencyRateHashMapForToday.get(sourceCurrencyCode).getCharCode() + currencyRateHashMapForToday.get(sourceCurrencyCode).getName(),
-                        currencyRateHashMapForToday.get(targetCurrencyCode).getCharCode() + currencyRateHashMapForToday.get(targetCurrencyCode).getName(),
+                        currencyRateHashMapForToday.get(sourceCurrencyCode).getCharCode()
+                                + "("
+                                + currencyRateHashMapForToday.get(sourceCurrencyCode).getName()
+                                + ")",
+                        currencyRateHashMapForToday.get(targetCurrencyCode).getCharCode()
+                                + "("
+                                + currencyRateHashMapForToday.get(targetCurrencyCode).getName()
+                                + ")",
                         coefficient,
                         result.toString(),
                         currencyRateHashMapForToday.get(sourceCurrencyCode).getDate()
