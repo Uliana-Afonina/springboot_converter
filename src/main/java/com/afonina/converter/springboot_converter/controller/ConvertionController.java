@@ -1,12 +1,9 @@
 package com.afonina.converter.springboot_converter.controller;
 
 import com.afonina.converter.springboot_converter.service.api.CurrencyRateDAOService;
-import com.afonina.converter.springboot_converter.entity.*;
-import com.afonina.converter.springboot_converter.service.impl.ConvertingService;
+import com.afonina.converter.springboot_converter.service.impl.conversion.ConvertingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/")
