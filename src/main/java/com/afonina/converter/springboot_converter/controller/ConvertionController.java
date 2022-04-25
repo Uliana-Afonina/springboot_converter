@@ -55,6 +55,12 @@ public class ConvertionController {
         List<CurrencyConversion> allCurrencyConversions = currencyConversionDAOService.findAllCurrencyConversions();
         return allCurrencyConversions;
     }
+
+    @GetMapping(value = "/history/{date}")
+    public List<CurrencyConversion> getConversionsByDate(@PathVariable String date) {
+        List<CurrencyConversion> allCurrencyConversions = currencyConversionDAOService.findAllByDate(date);
+        return allCurrencyConversions;
+    }
 //    @GetMapping()
 //    public List<Currency> getAllCurrencies() {
 //        return "index";

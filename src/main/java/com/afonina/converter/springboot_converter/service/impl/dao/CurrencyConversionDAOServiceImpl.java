@@ -24,4 +24,10 @@ public class CurrencyConversionDAOServiceImpl implements CurrencyConversionDAOSe
         List<CurrencyConversion> allCurrencyConversions = currencyConversionRepository.findAll();
         return allCurrencyConversions;
     }
+
+    @Override
+    public List<CurrencyConversion> findAllByDate(String date) {
+        List<CurrencyConversion> allByDate = currencyConversionRepository.findAllByDate(date);
+        return allByDate;
+    }
 }

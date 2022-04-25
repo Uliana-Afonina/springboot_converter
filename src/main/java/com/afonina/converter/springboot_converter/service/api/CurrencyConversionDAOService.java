@@ -8,4 +8,6 @@ public interface CurrencyConversionDAOService {
     void saveCurrencyConversion(CurrencyConversion currencyConversion);
 
     List<CurrencyConversion> findAllCurrencyConversions();
+
+    List<CurrencyConversion> findAllByDate(String date);
 }
