@@ -22,6 +22,6 @@ CREATE TABLE my_db.currencyconversions (
   PRIMARY KEY (id)
 );
 
-пример get-запроса:
+пример get-запроса для операции конвертации:
 
 http://localhost:8080/converter?sourceCurrencyCode=AUD&targetCurrencyCode=AZN&coefficient=2
