@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/")
-public class ConvertionController {
+public class ConversionController {
 
     @Autowired
     private CurrencyRateDAOService currencyRateDAOService;
