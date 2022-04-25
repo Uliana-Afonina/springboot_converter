@@ -2,6 +2,8 @@
 
 Скрипт для создания таблиц в MySQL:
 
+1. Таблица курсов валют
+
 CREATE TABLE my_db.currencyRates (
   id varchar(15),
   name varchar(100),
@@ -11,6 +13,8 @@ CREATE TABLE my_db.currencyRates (
   date varchar(10),
   PRIMARY KEY (char_code)
 );
+
+2. Таблица с историей конвертаций
 
 CREATE TABLE my_db.currencyconversions (
   id int NOT NULL AUTO_INCREMENT,
