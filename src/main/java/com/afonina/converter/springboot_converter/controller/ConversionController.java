@@ -20,31 +20,12 @@ public class ConversionController {
     @Autowired
     private CurrencyConversionDAOService currencyConversionDAOService;
 
-//    @GetMapping("/currencyRates")
-//    public List<CurrencyRate> getAllCurrencyRates() {
-//        List<CurrencyRate> allCurrencyRates = currencyRateDAOService.getAllCurrencyRates();
-//        return allCurrencyRates;
-//    }
-//
-//    @PostMapping("/currencyRates")
-//    public List<CurrencyRate> saveAllCurrencyRates(@RequestBody List<CurrencyRate> currencyRates) {
-//        currencyRateDAOService.saveAllCurrencyRates(currencyRates);
-//        return currencyRates;
-//    }
-//
-//    @GetMapping("/currencyRates/{charCode}")
-//    public CurrencyRate getCurrencyRates(@PathVariable String charCode) {
-//        CurrencyRate currencyRate = currencyRateDAOService.getCurrencyRateByCharCode(charCode);
-//        return currencyRate;
-//    }
-
     //в полях ввода на фронте будут charCode-ы
     @GetMapping(value = "/converter")
     public String getConversionResult(
             @RequestParam(value = "sourceCurrencyCode") String sourceCurrencyCode,
             @RequestParam(value = "targetCurrencyCode") String targetCurrencyCode,
-            @RequestParam(value = "coefficient") String coefficient
-    ) {
+            @RequestParam(value = "coefficient") String coefficient) {
 
         String result = convertingService.convert(sourceCurrencyCode, targetCurrencyCode, coefficient);
         return result;
@@ -61,8 +42,4 @@ public class ConversionController {
         List<CurrencyConversion> allCurrencyConversions = currencyConversionDAOService.findAllByDate(date);
         return allCurrencyConversions;
     }
-//    @GetMapping()
-//    public List<Currency> getAllCurrencies() {
-//        return "index";
-//    }
 }
